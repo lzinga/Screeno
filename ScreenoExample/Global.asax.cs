@@ -14,7 +14,9 @@ namespace ScreenoExample
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+#if DEBUG
             Screeno.Screeno screen = new Screeno.Screeno(@"C:\Temp\ScreenoImages");
+#endif
         }
     }
 }

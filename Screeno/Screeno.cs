@@ -16,6 +16,11 @@ namespace Screeno
         #endregion
 
         #region Constructors
+        /// <summary>
+        /// C'tor
+        /// </summary>
+        /// <param name="savePath">The path all screenshots will be saved.</param>
+        /// <param name="bufferTime">The time it takes before another screenshot can be saved.</param>
         public Screeno(string savePath, TimeSpan bufferTime)
         {
             if(Instance != null)

@@ -23,10 +23,6 @@ namespace Screeno
 
         public TakeScreenAttribute()
         {
-            if(Screeno.Instance == null)
-            {
-                throw new NullReferenceException("Screeno instance is required. Best to put it on startup.");
-            }
         }
 
         private Bitmap TakeScreenshot()
@@ -55,10 +51,12 @@ namespace Screeno
         public override void OnResultExecuted(ResultExecutedContext filterContext)
         {
             base.OnResultExecuted(filterContext);
-
-            _controllerName = filterContext.Controller.ControllerContext.RouteData.Values["controller"].ToString();
-            _actionName = filterContext.Controller.ControllerContext.RouteData.Values["action"].ToString();
-            SaveScreenshot(TakeScreenshot());
+            if (Screeno.Instance != null)
+            {
+                _controllerName = filterContext.Controller.ControllerContext.RouteData.Values["controller"].ToString();
+                _actionName = filterContext.Controller.ControllerContext.RouteData.Values["action"].ToString();
+                SaveScreenshot(TakeScreenshot());
+            }
         }
     }
 }
